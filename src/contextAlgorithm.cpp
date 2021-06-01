@@ -1,7 +1,7 @@
 #include "vlmcmethods.h"
 
 // [[Rcpp::export]]
-std::string contextAlgorithm(List data, unsigned int Hmax, unsigned int alphlen, double cutoff = 10.0){
+Rcpp::List contextAlgorithm(List data, unsigned int Hmax, unsigned int alphlen, double cutoff = 10.0){
   // Allocate maximal tree
   vlmcTree* tau = new vlmcTree(alphlen, Hmax);
   tau->root->tested = true;
@@ -39,8 +39,24 @@ std::string contextAlgorithm(List data, unsigned int Hmax, unsigned int alphlen,
   }
   
   // Return output
-  string out;
-  out = tau->concatLeaves();
+  string out = tau->concatLeaves();
+  vector<vector<double>> probs;
+  vector<unsigned int> ns;
+  vector<vlmcNode*> final_leaves = tau->getVlmcLeaves();
+  vector<double> lrtStats;
+  double ll = 0;
+  for(vlmcNode* leaf : final_leaves){
+    probs.push_back(leaf->getProbs());
+    ns.push_back(leaf->getN());
+    ll += leaf->llcache;
+    leaf->computeLrtStat();
+    lrtStats.push_back(leaf->lrtStat);
+  }
   delete tau;
-  return(out);
+  return Rcpp::List::create(
+    Rcpp::Named("tree") = out,
+    Rcpp::Named("probs") = probs,
+    Rcpp::Named("ns") = ns,
+    Rcpp::Named("lrtStats") = lrtStats,
+    Rcpp::Named("ll") = ll);
 }

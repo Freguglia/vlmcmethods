@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // contextAlgorithm
-std::string contextAlgorithm(List data, unsigned int Hmax, unsigned int alphlen, double cutoff);
+Rcpp::List contextAlgorithm(List data, unsigned int Hmax, unsigned int alphlen, double cutoff);
 RcppExport SEXP _vlmcmethods_contextAlgorithm(SEXP dataSEXP, SEXP HmaxSEXP, SEXP alphlenSEXP, SEXP cutoffSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

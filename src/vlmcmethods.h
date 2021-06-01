@@ -13,7 +13,7 @@
 using namespace std;
 using namespace Rcpp;
 
-string contextAlgorithm(Rcpp::List data, unsigned int Hmax, unsigned int alphlen, double cutoff);
+List contextAlgorithm(Rcpp::List data, unsigned int Hmax, unsigned int alphlen, double cutoff);
 
 class vlmcNode{
 public:
@@ -22,6 +22,8 @@ public:
     unsigned int label;
     vector<unsigned int> cnts;
     double llcache;
+    double lrtStat;
+    void computeLrtStat();
     vector<vlmcNode*> children;
     vlmcNode* parent = NULL;
     vector<vlmcNode*> getNodes();
@@ -32,6 +34,8 @@ public:
     bool tested = false;
     void growPerfect(unsigned int m, unsigned int H);
     string getPath();
+    vector<double> getProbs();
+    unsigned int getN();
 private:
     bool isLeaf();
     void growChildren(unsigned int m);

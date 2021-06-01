@@ -38,9 +38,10 @@ str(binchain)
 # Fitting VLMC via context algorithm
 fit <- vlmcfit(binchain, Hmax = 8, cutoff = 10)
 fit
+summary(fit)
 
 # Plotting trees
-tree_plot(fit)
+plot(fit)
 
 # Obtain a tbl_graph object from the fitted tree (string)
 graph <- tree_graph(fit)

@@ -14,7 +14,8 @@ Imports:
     stringr,
     dplyr,
     ggplot2,
-    ggraph
+    ggraph,
+    tidyr
 LinkingTo: Rcpp
 RoxygenNote: 7.1.1
 LazyData: true
