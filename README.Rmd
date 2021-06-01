@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "70%"
+)
+```
+
+# vlmcmethods
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Methods for Variable-Length Markov Chain models...
+
+## Installation
+
+Install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Freguglia/vlmcmethods")
+```
+## Example
+
+```{r example}
+library(vlmcmethods)
+# Example dataset format
+str(binchain)
+
+# Fitting VLMC via context algorithm
+fit <- vlmcfit(binchain, Hmax = 8, cutoff = 10)
+fit
+
+# Plotting trees
+tree_plot(fit)
+
+# Obtain a tbl_graph object from the fitted tree (string)
+graph <- tree_graph(fit)
+graph
+# You can use this object within the 'ggraph' package to create 
+# custom visualizations
+```

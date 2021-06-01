@@ -1,0 +1,23 @@
+Package: vlmcmethods
+Type: Package
+Title: Methods for Variable-Length Markov Chains
+Version: 1.0
+Date: 2021-06-01
+Author: Victor Freguglia
+Maintainer: Victor Freguglia <victorfreguglia@gmail.com>
+Description: The package provides a collection of methods for fitting,
+    visualization, etc, of Variable-Length Markov Chain models.
+License: GPL (>= 3)
+Imports: 
+    Rcpp (>= 1.0.6),
+    tidygraph,
+    stringr,
+    dplyr,
+    ggplot2,
+    ggraph
+LinkingTo: Rcpp
+RoxygenNote: 7.1.1
+LazyData: true
+Encoding: UTF-8
+Depends: 
+    R (>= 2.10)
